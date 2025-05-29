@@ -1,51 +1,15 @@
 import Banner from '@/component/banner.client';
 import Card from '@/component/card.server';
+import { fetchCoffeeStores } from '@/lib/coffee-stores';
+import { CoffeeStoreType } from '@/types';
 
-export default function Home() {
-  const coffeeStores = [
-    {
-      id: "dark-horse-coffee",
-      name: "Dark Horse Coffee",
-      imgUrl: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=1000",
-      address: "123 Main Street",
-      neighbourhood: "Downtown"
-    },
-    {
-      id: "brew-haven",
-      name: "Brew Haven",
-      imgUrl: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000",
-      address: "456 Oak Avenue",
-      neighbourhood: "West Side"
-    },
-    {
-      id: "caffeine-culture",
-      name: "Caffeine Culture",
-      imgUrl: "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=1000",
-      address: "789 Elm Street",
-      neighbourhood: "East Village"
-    },
-    {
-      id: "bean-bliss",
-      name: "Bean Bliss",
-      imgUrl: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=1000",
-      address: "321 Pine Road",
-      neighbourhood: "Harbor District"
-    },
-    {
-      id: "roast-retreat",
-      name: "Roast Retreat",
-      imgUrl: "https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?q=80&w=1000",
-      address: "654 Maple Drive",
-      neighbourhood: "North Heights"
-    },
-    {
-      id: "espresso-emporium",
-      name: "Espresso Emporium",
-      imgUrl: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000",
-      address: "987 Cedar Lane",
-      neighbourhood: "South Park"
-    }
-  ];
+async function getCoffeeStores() {
+  //Mapbox API to get coffee stores
+  return await fetchCoffeeStores();
+}
+
+export default async function Home() {
+  const coffeeStores = await getCoffeeStores();
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -55,7 +19,7 @@ export default function Home() {
             Coffee Stores
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-6">
-            {coffeeStores.map((coffeeStore, idx) => (
+            {coffeeStores.map((coffeeStore: CoffeeStoreType, idx: number) => (
               <Card
                 key={`${coffeeStore.name}-${idx}`}
                 name={coffeeStore.name}
