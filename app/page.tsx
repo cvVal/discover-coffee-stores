@@ -19,9 +19,9 @@ export default async function Home() {
             Coffee Stores
           </h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-6">
-            {coffeeStores.map((coffeeStore: CoffeeStoreType, idx: number) => (
+            {coffeeStores.map((coffeeStore: CoffeeStoreType) => (
               <Card
-                key={`${coffeeStore.name}-${idx}`}
+                key={`${coffeeStore.name}-${coffeeStore.id}`}
                 name={coffeeStore.name}
                 imgUrl={coffeeStore.imgUrl}
                 href={`/coffee-store/${coffeeStore.id}`}
