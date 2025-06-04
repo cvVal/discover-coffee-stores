@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link';
 import { fetchCoffeeStore, fetchCoffeeStores } from '@/lib/coffee-stores';
-import Image from 'next/image';
+import Image from "next/image";
 import { CoffeeStoreType } from '@/types';
 
 /**
@@ -50,7 +50,10 @@ export default async function Page({
             alt={name || 'Coffee store'}
             width={740}
             height={360}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </div>
         <div className='glass mt-12 flex-col rounded-lg p-4 lg:mt-48'>
           {address && (
@@ -61,5 +64,5 @@ export default async function Page({
         </div>
       </div>
     </div>
-  )
+  );
 }

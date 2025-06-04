@@ -1,11 +1,12 @@
-import Banner from '@/component/banner.client';
 import Card from '@/component/card.server';
+import NearbyCoffeeStores from '@/component/nearby-coffee-stores.client';
 import { fetchCoffeeStores } from '@/lib/coffee-stores';
 import { CoffeeStoreType } from '@/types';
 
 async function getCoffeeStores() {
   //Mapbox API to get coffee stores
-  return await fetchCoffeeStores();
+  const longLat = '-83.13123458507118%2C42.679827991377444';
+  return await fetchCoffeeStores(longLat, 6);
 }
 
 export default async function Home() {
@@ -13,7 +14,7 @@ export default async function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Banner />
+        <NearbyCoffeeStores />
         <div className='mt-20'>
           <h2 className='mt-8 pb-8 text-4xl font-bold text-white'>
             Coffee Stores

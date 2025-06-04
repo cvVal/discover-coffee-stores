@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 import Link from 'next/link';
 
 type CardType = {
@@ -22,12 +22,14 @@ export default function Card({ name, imgUrl, href }: CardType) {
                     <Image
                         className="rounded-lg shadow-lg"
                         src={imgUrl}
-                        layout="fill"
-                        objectFit="cover"
                         alt={'Coffee Store Image'}
                         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8/+ZNPQAIoQM4xp5zkgAAAABJRU5ErkJggg=="
                         placeholder="blur"
-                    />
+                        fill
+                        sizes="100vw"
+                        style={{
+                            objectFit: "cover"
+                        }} />
                 </div>
             </div>
         </Link>

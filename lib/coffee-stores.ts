@@ -36,8 +36,8 @@ const transformCoffeeData = (
 /**
  * Fetches all coffee stores
  */
-export const fetchCoffeeStores = async (): Promise<CoffeeStoreType[]> => {
-    const mapBoxUrl = `https://api.mapbox.com/search/geocode/v6/forward?q=coffee&limit=6&proximity=-83.13123458507118%2C42.679827991377444&access_token=${process.env.MAPBOX_API_KEY}`
+export const fetchCoffeeStores = async (longLat: string, limit: number): Promise<CoffeeStoreType[]> => {
+    const mapBoxUrl = `https://api.mapbox.com/search/geocode/v6/forward?q=coffee&limit=${limit}&proximity=${longLat}&access_token=${process.env.MAPBOX_API_KEY}`
     try {
         const response = await fetch(mapBoxUrl, { next: { revalidate: 60 * 60 } }); // Cache for an hour
         const data = await response.json();
