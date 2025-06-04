@@ -5,7 +5,6 @@ import Banner from './banner.client';
 import useTrackLocation from '@/hooks/use-track-location';
 import Card from './card.server';
 import { CoffeeStoreType } from '@/types';
-import { fetchCoffeeStores } from '@/lib/coffee-stores';
 
 export default function NearbyCoffeeStores() {
     const { handleTrackLocation, isFindingLocation, longLat, locationErrorMsg } =

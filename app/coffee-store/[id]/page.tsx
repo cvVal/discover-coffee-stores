@@ -15,7 +15,8 @@ async function getCoffeeStore(id: string): Promise<CoffeeStoreType> {
  * Generate static params for all known coffee stores
  */
 export async function generateStaticParams() {
-  const coffeeStores = await fetchCoffeeStores();
+  const longLat = '-83.13123458507118%2C42.679827991377444';
+  const coffeeStores = await fetchCoffeeStores(longLat, 6);
   return coffeeStores.map((coffeeStore) => ({
     id: coffeeStore.id,
   }));
@@ -24,12 +25,12 @@ export async function generateStaticParams() {
 /**
  * Coffee store page component
  */
-export default async function Page({
-  params,
-}: {
-  params: { id: string };
+export default async function Page(props: {
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
+  const params = await props.params;
+
+  const { id } = params;
 
   const coffeeStore = await getCoffeeStore(id);
   const { name = '', address = '', imgUrl = '' } = coffeeStore;

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = 'force-dynamic'; // Ensure this route is always fresh
 
-export async function GET(request: NextRequest, response: NextResponse) {
+export async function GET(request: NextRequest) {
     try {
         const searchParams = request.nextUrl.searchParams;
         const longLat = searchParams.get("longLat") || '';

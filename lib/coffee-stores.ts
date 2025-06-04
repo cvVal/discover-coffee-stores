@@ -58,7 +58,8 @@ export const fetchCoffeeStores = async (longLat: string, limit: number): Promise
 export const fetchCoffeeStore = async (id: string): Promise<CoffeeStoreType> => {
     try {
         // First try to find the store in our existing list
-        const coffeeStores = await fetchCoffeeStores();
+        const longLat = '-83.13123458507118%2C42.679827991377444';
+        const coffeeStores = await fetchCoffeeStores(longLat, 6);
         const existingStore = coffeeStores.find(store => store.id === id);
         if (existingStore) {
             return existingStore;
