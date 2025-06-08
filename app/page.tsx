@@ -1,12 +1,12 @@
 import Card from '@/component/card.server';
 import NearbyCoffeeStores from '@/component/nearby-coffee-stores.client';
-import { fetchCoffeeStores } from '@/lib/coffee-stores';
+import { getCoffeeStoresWithVoting } from '@/lib/coffee-stores-with-voting';
 import { CoffeeStoreType } from '@/types';
 
 async function getCoffeeStores() {
-  //Mapbox API to get coffee stores
+  //Mapbox API to get coffee stores with voting data
   const longLat = '-83.13123458507118%2C42.679827991377444';
-  return await fetchCoffeeStores(longLat, 6);
+  return await getCoffeeStoresWithVoting(longLat, 6);
 }
 
 export default async function Home() {
@@ -26,6 +26,7 @@ export default async function Home() {
                 name={coffeeStore.name}
                 imgUrl={coffeeStore.imgUrl}
                 href={`/coffee-store/${coffeeStore.id}`}
+                voting={coffeeStore.voting}
               />
             ))}
           </div>
