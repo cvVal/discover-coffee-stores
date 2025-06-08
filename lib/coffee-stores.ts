@@ -29,7 +29,8 @@ const transformCoffeeData = (
         id: result.id,
         address: result.properties?.place_formatted || "No address available",
         name: result.properties?.name || "Unnamed Coffee Store",
-        imgUrl: photos.length > 0 ? photos[idx % photos.length] : '', // Use modulo to cycle through available photos
+        imgUrl: photos.length > 0 ? photos[idx % photos.length] : '', // Use modulo to cycle through available photos,
+        voting: 0 // Default voting value
     }
 }
 
@@ -80,7 +81,8 @@ export const fetchCoffeeStore = async (id: string): Promise<CoffeeStoreType> => 
             id: '',
             name: '',
             address: '',
-            imgUrl: ''
+            imgUrl: '',
+            voting: 0
         };
     } catch (error) {
         console.error("Error fetching coffee store:", error);
@@ -88,7 +90,8 @@ export const fetchCoffeeStore = async (id: string): Promise<CoffeeStoreType> => 
             id: '',
             name: '',
             address: '',
-            imgUrl: ''
+            imgUrl: '',
+            voting: 0
         };
     }
 }

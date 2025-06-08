@@ -3,12 +3,16 @@ import Link from 'next/link';
 import { fetchCoffeeStore, fetchCoffeeStores } from '@/lib/coffee-stores';
 import Image from "next/image";
 import { CoffeeStoreType } from '@/types';
+import { createCoffeeStore } from '@/lib/airtable';
 
 /**
  * Fetch a single coffee store by ID
  */
 async function getCoffeeStore(id: string): Promise<CoffeeStoreType> {
-  return await fetchCoffeeStore(id);
+
+  const coffeeStoreFromMapbox = await fetchCoffeeStore(id);
+  const _createCoffeeStore = createCoffeeStore(coffeeStoreFromMapbox, id);
+  return coffeeStoreFromMapbox;
 }
 
 /**
@@ -56,10 +60,16 @@ export default async function Page(props: {
               height: "auto"
             }} />
         </div>
-        <div className='glass mt-12 flex-col rounded-lg p-4 lg:mt-48'>
+        <div className={`glass mt-12 flex-col rounded-lg p-4 lg:mt-48`}>
           {address && (
-            <div className='mb-4 flex'>
-              <p className='pl-2'>{address}</p>
+            <div className="mb-4 flex">
+              <Image
+                src="/static/icons/places.svg"
+                width="24"
+                height="24"
+                alt="places icon"
+              />
+              <p className="pl-2">{address}</p>
             </div>
           )}
         </div>
