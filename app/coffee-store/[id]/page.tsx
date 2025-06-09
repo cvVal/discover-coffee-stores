@@ -1,11 +1,11 @@
 import React from 'react'
-import Link from 'next/link';
 import { fetchCoffeeStore, fetchCoffeeStores } from '@/lib/coffee-stores';
 import Image from "next/image";
 import { CoffeeStoreType } from '@/types';
 import { createCoffeeStore } from '@/lib/airtable';
 import Upvote from '@/component/upvote.client';
 import RatingStats from '@/component/rating-stats.client';
+import BackButton from '@/component/back-button.client';
 
 /**
  * Fetch a single coffee store by ID
@@ -63,17 +63,9 @@ export default async function Page(props: {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
       <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
-        {/* Enhanced Back to Home Button */}
+        {/* Go Back Button */}
         <div className='mb-8'>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md rounded-2xl text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 border border-white/20 shadow-lg group"
-          >
-            <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span className="font-medium">Back to Home</span>
-          </Link>
+          <BackButton />
         </div>
 
         {/* Main Content Grid */}

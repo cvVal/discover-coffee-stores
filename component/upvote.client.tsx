@@ -20,7 +20,10 @@ export default function Upvote({ voting, id }: { voting: number, id: string }) {
 
                 // Dispatch custom event to update rating stats
                 const event = new CustomEvent('votingUpdated', {
-                    detail: { newVoting: votes + 1 }
+                    detail: {
+                        newVoting: votes + 1,
+                        storeId: id
+                    }
                 });
                 window.dispatchEvent(event);
             } catch (error) {
